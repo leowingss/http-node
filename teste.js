@@ -13,9 +13,17 @@ function callback(req, res) {
     const parts = url.parse(req.url) //faz o parser da URL separando o caminha(rota) 
     const path = parts.path
 
-    if (path == '/cep/sé') {
-        readFile(res, "cep-praca.json");
-    } else if (path == '/cep/casa') {
-        readFile(res, "cep-casa.json")
+    if (path == '/cep/se') {
+        readFile(res, "cep-praca.json"); // Retorna informações da praça da Sé
+    } else if (path == '/cep/republica') { // Retorna informações da minha casa
+        readFile(res, "cep-republica.json")
+    } else {
+        res.end("Path não mapeado: " + path)
     }
 }
+
+const server = http.createServer(callback) // iniciando o servidor.
+
+server.listen(7070)
+
+console.log("Servidor rodando!")
