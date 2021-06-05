@@ -1,10 +1,10 @@
 const http = require('http')
 const url = require('url')
-const fs = require("fs")
+const fs = require("fs") // com este módulo podemos usar a função fs.readFile.
 
-function readFile(res, file) { // função para ler um arquivo e escrevê-lo na response.
-    fs.readFile(file, (err, data) => { // leitura do arquivo de forma assíncrona.
-        res.end(data)
+function readFile(res, file) { // função para ler um arquivo e escrevê-lo na response. Quando a leitura do arquivo terminar a função de callback será chamada.
+    fs.readFile(file, (err, data) => { // leitura do arquivo de forma assíncrona, garantindo boa performance e reutilização dos recursos do sistema operacional.
+        res.end(data) // data é o conteúdo do arquivo.
     })
 }
 
